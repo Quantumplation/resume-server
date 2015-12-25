@@ -1,5 +1,6 @@
 Resume Server
 =============
+On docker: https://hub.docker.com/r/quantumplation/resume-server/
 
 Uses https://github.com/hacksalot/HackMyResume to fetch some json-formatted resume data and generate different styled html resumes, then serves them statically.
 
