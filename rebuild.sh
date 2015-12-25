@@ -3,7 +3,13 @@ rm -f resume.json
 LATEST=$(node -pe 'JSON.parse(process.argv[1]).files["resume.json"].raw_url.trim()' "$(curl -s $RESUME_GIST)")
 curl -s $LATEST > resume.json
 
-hackmyresume BUILD resume.json TO resume_compact.html -t compact
-hackmyresume BUILD resume.json TO resume_positive.html -t positive
-hackmyresume BUILD resume.json TO resume_modern.html -t modern
-hackmyresume BUILD resume.json TO resume_minimist.html -t minimist
+for theme in compact positive modern minimist
+do
+  if [ "$theme" == "$DEFAULT_THEME" ]
+  then
+    filename="index.html"
+  else
+    filename="resume_$theme.html"
+  fi
+  hackmyresume BUILD resume.json TO $filename -t $theme
+done
